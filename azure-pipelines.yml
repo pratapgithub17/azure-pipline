@@ -1,0 +1,57 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  CI: 'true'
+  TEST_ENV: 'qa'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Use Node.js'
+
+- script: |
+    npm ci
+    npx playwright install --with-deps chromium
+  displayName: 'Install dependencies and Playwright browsers'
+
+- script: |
+    npm run test:ci -- tests/Sanity.spec.ts
+  condition: succeeded()
+  displayName: 'Run Sanity suite'
+  env:
+    BASE_URL: $(BASE_URL)
+    TEST_ENV: $(TEST_ENV)
+
+- script: |
+    npm run test:ci -- tests/Regression.spec.ts
+  condition: succeeded()
+  displayName: 'Run Regression suite'
+  env:
+    BASE_URL: $(BASE_URL)
+    TEST_ENV: $(TEST_ENV)
+
+- script: |
+    npm run test:ci -- tests/ecommerse-flow.spec.ts
+  condition: succeeded()
+  displayName: 'Run Ecommerse-flow suite'
+  env:
+    BASE_URL: $(BASE_URL)
+    TEST_ENV: $(TEST_ENV)
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'test-results/**/*.xml'
+    testRunTitle: 'Playwright Tests'
+
+- task: PublishPipelineArtifact@1
+  condition: succeededOrFailed()
+  inputs:
+    targetPath: 'playwright-report'
+    artifact: 'playwright-report'

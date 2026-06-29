@@ -1,0 +1,25 @@
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="71.55928999999999">
+<testsuite name="auth.setup.ts" timestamp="2026-06-28T17:21:42.897Z" hostname="setup" tests="1" failures="0" skipped="0" time="10.193" errors="0">
+<testcase name="Aunthentication" classname="auth.setup.ts" time="10.193">
+</testcase>
+</testsuite>
+<testsuite name="ecommerse-flow.spec.ts" timestamp="2026-06-28T17:21:42.897Z" hostname="Chromium" tests="1" failures="0" skipped="0" time="58.98" errors="0">
+<testcase name="Ecommerse Test Suite › ecommerse flow" classname="ecommerse-flow.spec.ts" time="58.98">
+<system-out>
+<![CDATA[[2026-06-28 22:51:54] INFO: Test Suite Execution Started
+[2026-06-28 22:51:55] INFO: Navigating to application
+[2026-06-28 22:52:09] INFO: Application launched successfully
+[2026-06-28 22:52:22] INFO: Product Page Verification Completed
+[33mtrue[39m
+[2026-06-28 22:52:30] INFO: Product Details Page Verification Completed
+[2026-06-28 22:52:42] INFO: Cart Page Verification Completed
+[2026-06-28 22:52:48] INFO: Checkout Page Verification Completed
+[2026-06-28 22:52:52] INFO: Confirm Order Page Verification Completed
+[2026-06-28 22:52:53] INFO: Order Success Message Verified
+[2026-06-28 22:52:53] INFO: Test execution completed
+[2026-06-28 22:52:54] INFO: Test Suite Execution completed
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
